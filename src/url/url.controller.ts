@@ -50,9 +50,8 @@ export class UrlController {
   @Get(':id')
   @Redirect()
   async redirect(@Param('id') id: string) {
-    return id
-    //const url: url = await this.urlService.findOneByShorted(id);
-    //if (!url) throw new NotFoundException(`URL doesn't exist`);
-    //return { url: url.long };
+    const url: url = await this.urlService.findOneByShorted(id);
+    if (!url) throw new NotFoundException(`URL doesn't exist`);
+    return { url: url.long };
   }
 }
